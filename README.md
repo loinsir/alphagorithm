@@ -2,7 +2,7 @@
 알고리즘 문제 풀어보자ㅇㅅㅇ
 <<<<<<< HEAD
 
-## Syntactic sugar
+## Syntactic sugar 문법적 설탕
 
 ### stride
 
