@@ -1,6 +1,5 @@
 # alphagorithm
 알고리즘 문제 풀어보자ㅇㅅㅇ
-<<<<<<< HEAD
 
 ## Syntactic sugar 문법적 설탕
 
