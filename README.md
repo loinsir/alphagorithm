@@ -48,3 +48,4 @@
 ```swift
 let numbers: [Int] = readLine()!.split(separator: " ").map { Int(String($0))! }
 ```
+- 참고: https://velog.io/@ryan-son/Swift-10818-%EC%B5%9C%EC%86%8C-%EC%B5%9C%EB%8C%80-%EB%B0%B1%EC%A4%80-B3
