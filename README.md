@@ -43,9 +43,8 @@
 - 이에 반해 through는 지정한 범위를 포함한다.
 
 ### 공백 포함된 문자열을 Int 배열로 변환할 때는 String 형변환을 거치자
-
 - 배열 내부 각 요소의 타입을 map(_:)과 Int의 이니셜라이저를 통해 Int 타입으로 변환할 때 String.SubSequence -> Int 보다 String.SubSequence -> String -> Int의 수행속도가 더 빠르다
 ```swift
 let numbers: [Int] = readLine()!.split(separator: " ").map { Int(String($0))! }
 ```
-- 참고: https://velog.io/@ryan-son/Swift-10818-%EC%B5%9C%EC%86%8C-%EC%B5%9C%EB%8C%80-%EB%B0%B1%EC%A4%80-B3
+- 참고: 백준 10818 문제, https://velog.io/@ryan-son/Swift-10818-%EC%B5%9C%EC%86%8C-%EC%B5%9C%EB%8C%80-%EB%B0%B1%EC%A4%80-B3
