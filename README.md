@@ -48,3 +48,22 @@
 let numbers: [Int] = readLine()!.split(separator: " ").map { Int(String($0))! }
 ```
 - 참고: 백준 10818 문제, https://velog.io/@ryan-son/Swift-10818-%EC%B5%9C%EC%86%8C-%EC%B5%9C%EB%8C%80-%EB%B0%B1%EC%A4%80-B3
+
+### joined
+- 배열에 들어있는 여러 원소들을 하나로 묶고 싶은 경우 사용
+- Swift 표준 라이브러리에 포함
+```swift
+let cast = ["Vivien", "Marlon", "Kim", "Karl"]
+let list = cast.joined(separator: ", ")
+print(list)
+// "Vivien, Marlon, Kim, Karl" 출력
+```
+
+- 또한 joined(separator:) 메소드는 또한 배열의 시퀀스들을 하나의 배열로 연결한 값을 반환할 수도 있다.
+```swift
+let nestedNumbers = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+let joined = nestedNumbers.joined(separator: [-1, -2])
+print(Array(joined))
+// "[1, 2, 3, -1, -2, 4, 5, 6, -1, -2, 7, 8, 9]" 출력
+```
+- 참고: https://medium.com/@sunghyun_k/swift-joined-4fcc49098bd0
