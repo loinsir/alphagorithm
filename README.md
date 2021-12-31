@@ -67,3 +67,15 @@ print(Array(joined))
 // "[1, 2, 3, -1, -2, 4, 5, 6, -1, -2, 7, 8, 9]" 출력
 ```
 - 참고: https://medium.com/@sunghyun_k/swift-joined-4fcc49098bd0
+
+### sort, sorted
+- sort는 제자리 정렬, sorted는 정렬된 요소를 새로이 반환함
+- 각 요소가 Comparable 프로토콜을 따라야 함
+- 디폴트는 오름차순, 내림차순은 sort(by: >), sorted(by: >)로 작성할 것
+```swift
+var arr = [3, 35, 5, 32, 1]
+arr.sort() // [1, 3, 5, 32, 35]
+
+let sortedArr = arr.sorted() // [1, 3, 5, 32, 35]
+```
+- 참고: https://hyerios.tistory.com/71
