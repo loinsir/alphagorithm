@@ -78,4 +78,5 @@ arr.sort() // [1, 3, 5, 32, 35]
 
 let sortedArr = arr.sorted() // [1, 3, 5, 32, 35]
 ```
+- 파이썬 과는 달리 둘다 배열의 메서드라는 점을 유의
 - 참고: https://hyerios.tistory.com/71
