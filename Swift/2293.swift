@@ -1,6 +1,8 @@
+import Foundation
+
 var input = readLine()!.split(separator: " ")
-let n = input[0]
-let k = input[1]
+let n = Int(input[0])!
+let k = Int(input[1])!
 
 var coins = [Int]()
 for _ in 1...n {
