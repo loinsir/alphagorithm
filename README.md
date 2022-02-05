@@ -26,6 +26,23 @@
     - `components`은 `[String]` 타입을 리턴한다.
 > 참고: https://velog.io/@minni/Swift-split-VS-components
 
+### indices
+- 컬렉션 자료구조에서 사용할 수 있는 프로퍼티
+- indices 프로퍼티는 컬렉션 자신에 대한 강한 참조를 리턴
+- [Self.Index]의 배열을 반환한다.
+- 예시
+    ```swift
+    var c = MyFancyCollection([10, 20, 30, 40, 50])
+    var i = c.startIndex
+    while i != c.endIndex {
+        c[i] /= 5
+        i = c.index(after: i)
+    }
+// c == MyFancyCollection([2, 4, 6, 8, 10])
+    ```
+
+> https://developer.apple.com/documentation/swift/collection/1641719-indices
+
 
 ### stride
 
