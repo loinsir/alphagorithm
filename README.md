@@ -4,8 +4,15 @@
 
 ## Syntactic sugar 문법적 설탕
 
+### import Foundation
+웬만하면 `import Foundation` 해야 한다. 다양한 자료구조의 유용한 메서드가 Foundation 프레임워크에 정의되어 있고, 웬만한 코테에서는 Foundation 프레임워크는 허용한다.
+
 ### 입력
 - 입력은 `readLine()` 함수를 이용한다. `readLine()`은 `String?` 타입을 리턴한다.
+- 문자열을 `Int` 타입으로 바꾸는 `Int()` 생성자는 `Int?` 타입을 리턴한다.
+
+### 배열
+- array의 마지막 인덱스 요소는 `array[-1]`이 아닌, `array.last!` 로 참조해야 한다.
 
 ### 출력
 - 출력은 문자열 보간을 유용하게 사용하자. 
