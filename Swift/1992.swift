@@ -11,8 +11,6 @@ for _ in 1...N {
     map.append(array)
 }
 
-var result = ""
-
 func devide_and_conquer(_ startY: Int, _ startX: Int, _ size: Int) -> String {
     if let sameNumber = getSameNumber(startY, startX, size) {
         return String(sameNumber)
