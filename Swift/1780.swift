@@ -9,11 +9,25 @@ var result1 = 0
 var map: [[Int]] = []
 
 for _ in 1...N {
-    map.append(readLine()!.components(separatedBy: " ").map { Int($0)! })
+    let temp = readLine()!.split(separator: " ").map{
+        Int(String($0))!
+    }
+    map.append(temp)
 }
 
 func devide_and_conquer(_ y: Int, _ x: Int, _ size: Int) {
     let number = map[y][x]
+
+    if size == 1 {
+        if number == -1 {
+            resultM1 += 1
+        } else if number == 0 {
+            result0 += 1
+        } else if number == 1 {
+            result1 += 1
+        }
+        return
+    }
 
     for j in y..<y+size {
         for i in x..<x+size {
