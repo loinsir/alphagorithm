@@ -8,8 +8,19 @@
 웬만하면 `import Foundation` 해야 한다. 다양한 자료구조의 유용한 메서드가 Foundation 프레임워크에 정의되어 있고, 웬만한 코테에서는 Foundation 프레임워크는 허용한다.
 
 ### 입력
-- 입력은 `readLine()` 함수를 이용한다. `readLine()`은 `String?` 타입을 리턴한다.
+- 입력은 `readLine()` 함수를 이용한다. `readLine()`은 `String?` 타입을 리턴한다. 그러므로 `readLine()!`을 사용하자.
 - 문자열을 `Int` 타입으로 바꾸는 `Int()` 생성자는 `Int?` 타입을 리턴한다.
+
+### 문자열 순회
+- `String` 타입을 for 문으로 순회할 수 있다. 이 때, 순회하는 타입은 `Character` 타입이다.
+- 예시 
+    ```swift
+    for i in "abcde" {
+        print(i)
+        // i 의 타입은 Character형
+    }
+    // a b c d e 차례로 한 줄 씩 출력
+    ```
 
 ### 배열
 - array의 마지막 인덱스 요소는 `array[-1]`이 아닌, `array.last!` 로 참조해야 한다.
