@@ -129,3 +129,31 @@ let sortedArr = arr.sorted() // [1, 3, 5, 32, 35]
 ```
 - 파이썬 과는 달리 둘다 배열의 메서드라는 점을 유의
 - 참고: https://hyerios.tistory.com/71
+
+### 문자열 뽀개기
+- 문자열 길이: `.count`
+- 문자열 내 substring을 구하기 위해서는 subscript에 Int값 대신 `Index` 객체를 통해 구해야 한다.
+- `Index` 객체 생성하는 법: `문자열.index(startIndex or endIndex, offsetBy: 몇번째 오프셋 인지 지정)`
+    - 예시
+    ```swift
+    let strTest = "안녕하십니까"
+    let strRange = strTest.index(strTest.startIndex, offsetBy: 2) ... strTest.index(strTest.endIndex, offsetBy: -2)
+    print(strTest[strRange]) // 하십니까
+
+    let strRange2 = strTest.index(strTest.startIndex, offsetBy: 2) ..< strTest.index(strTest.endIndex, offsetBy: -2)
+    print(strTest[strRange2]) // 하십니
+    ```
+- 첫번째 문자의 위치 : `문자열.startIndex`
+- 마지막 문자 뒤의 위치 : `문자열.endIndex`
+    - 예시
+    ```swift
+    var subFirst = strTest[strTest.startIndex] // 안
+    var subLast = strTest[strTest.index(before: strTest.endIndex)] // ?
+    ```
+- 문자열 내 substring 삭제: `removeSubrange[substring range]`
+
+- 문자열의 시작부분이 일치하는지: `hasPrefix("~~")`
+- 문자열의 끝부분이 일치하는지: `hasSuffix("~~")`
+
+- 문자열 대문자 변환: `uppercased()`
+- 문자열 소문자 변환: `lowercased()`
