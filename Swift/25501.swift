@@ -1,11 +1,13 @@
-// 맞았는데 시간초과임...
-
 let T = Int(readLine()!)!
 var count = 1
 var result: [String] = []
 for _ in 1...T {
     let S = readLine()!
-    result.append("\(isPalindrome(S)) \(count)")
+    var s: [String] = []
+    for char in S {
+        s.append(String(char))
+    }
+    result.append("\(isPalindrome(s)) \(count)")
     count = 1
 }
 
@@ -13,12 +15,12 @@ for i in result {
     print(i)
 }
 
-func isPalindrome(_ s: String) -> Int {
+func isPalindrome(_ s: [String]) -> Int {
     var left = 0
     var right = s.count - 1
 
     while left < right {
-        if s[s.index(s.startIndex, offsetBy: left)] == s[s.index(s.startIndex, offsetBy: right)] {
+        if s[left] == s[right] {
             count += 1
             left += 1
             right -= 1
