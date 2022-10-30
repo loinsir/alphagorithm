@@ -53,6 +53,7 @@
     - `split`은 `[Substring]`타입을 리턴한다.
     - `components`은 `[String]` 타입을 리턴한다.
 > 참고: https://velog.io/@minni/Swift-split-VS-components
+- 속도는 `.split`이 속도가 더 빠르다. 10816번 문제는 components 사용 시 해결 불가
 
 ### indices
 - 컬렉션 자료구조에서 사용할 수 있는 프로퍼티
