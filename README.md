@@ -4,7 +4,8 @@
 ## Syntactic sugar 문법적 설탕
 
 ### import Foundation
-웬만하면 `import Foundation` 해야 한다. 다양한 자료구조의 유용한 메서드가 Foundation 프레임워크에 정의되어 있고, 웬만한 코테에서는 Foundation 프레임워크는 허용한다.
+웬만한 코테에서는 Foundation 프레임워크는 허용한다.
+- Int.max, Int.min 등, 타입의 최대 최소 값을 사용하려면 Foundation을 import 해야한다.
 
 ### 입력
 - 입력은 `readLine()` 함수를 이용한다. `readLine()`은 `String?` 타입을 리턴한다. 그러므로 `readLine()!`을 사용하자.
