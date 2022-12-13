@@ -138,7 +138,7 @@ let sortedArr = arr.sorted() // [1, 3, 5, 32, 35]
     - 예시
     ```swift
     let strTest = "안녕하십니까"
-    let strRange = strTest.index(strTest.startIndex, offsetBy: 2) ... strTest.index(strTest.endIndex, offsetBy: -2)
+    let strRange: String.SubSequence = strTest.index(strTest.startIndex, offsetBy: 2) ... strTest.index(strTest.endIndex, offsetBy: -2) // 타입에 주의할 것
     print(strTest[strRange]) // 하십니까
 
     let strRange2 = strTest.index(strTest.startIndex, offsetBy: 2) ..< strTest.index(strTest.endIndex, offsetBy: -2)
