@@ -1,9 +1,8 @@
 let input = readLine()!.split(separator: " ").map { Int(String($0))! }
 let N = input[0], M = input[1], R = input[2]
 
-var graph: [Int: [Int]] = [:]
-var visited = [Bool](repeating: false, count: N+1)
-var result = [Int](repeating: 0, count: N+1)
+var graph: [[Int]] = Array(repeating: [Int](), count: N+1)
+var visited = [Int](repeating: 0, count: N+1)
 var count = 1
 
 struct Queue {
@@ -33,36 +32,27 @@ for _ in 1...M {
     let input2 = readLine()!.split(separator: " ").map { Int(String($0))! }
     let u = input2[0], v = input2[1]
 
-    if graph[u] == nil {
-        graph[u] = [v]
-    } else {
-        graph[u]!.append(v)
-    }
-
-    if graph[v] == nil {
-        graph[v] = [u]
-    } else {
-        graph[v]!.append(u)
-    }
+    graph[u].append(v)
+    graph[v].append(u)
 }
 
+graph = graph.map { $0.sorted(by: > )}
+
 queue.enqueue(R)
+visited[R] = count
 
 while let currentNode = queue.dequeue() {
-    visited[currentNode] = true
-    if result[currentNode] == 0 {
-        result[currentNode] = count
-        count += 1
-    }
-    let willVisits = graph[currentNode]!.sorted(by: > )
+    let willVisits = graph[currentNode]
 
     for node in willVisits {
-        if visited[node] == false {
+        if visited[node] == 0 {
+            count += 1
+            visited[node] = count
             queue.enqueue(node)
         }
     }
 }
 
-for i in result[1...] {
-    print(i)
+for i in 1..<visited.count {
+    print(visited[i])
 }
