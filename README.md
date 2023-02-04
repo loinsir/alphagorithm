@@ -156,5 +156,7 @@ let sortedArr = arr.sorted() // [1, 3, 5, 32, 35]
 - 문자열의 시작부분이 일치하는지: `hasPrefix("~~")`
 - 문자열의 끝부분이 일치하는지: `hasSuffix("~~")`
 
+- 문자열의 특정 문자를 대치: `replacingOccurrences(of: "바꾸고싶은문자", with: "바뀔 문자")
+
 - 문자열 대문자 변환: `uppercased()`
 - 문자열 소문자 변환: `lowercased()`
