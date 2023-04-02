@@ -15,7 +15,7 @@ final class Heap<T: Comparable> {
         nodes.append(data)
         
         while index >= 0, sort(nodes[index], nodes[(index-1) / 2]) {
-            nodes.swapAt(index, (index-1) / 2)
+            nodes.swapAt(index, (index - 1) / 2)
             index = (index-1) / 2
         }
     }
@@ -41,7 +41,6 @@ final class Heap<T: Comparable> {
             .sorted { sort(nodes[$0], nodes[$1]) }
             
             if children.isEmpty { break }
-            
             nodes.swapAt(index, children.first!)
             index = children.first!
         }
