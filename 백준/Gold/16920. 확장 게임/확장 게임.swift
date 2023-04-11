@@ -8,8 +8,9 @@ let s = [0] + readLine()!.split(separator: " ").map { Int(String($0))! }
 var map = Array(repeating: Array(repeating: 0, count: M), count: N)
 var visited = Array(repeating: Array(repeating: 0, count: M), count: N)
 var answer = Array(repeating: 0, count: P+1)
-var q = Array(repeating: [[Int]](), count: P+1)
+var q = Array(repeating: [[Int]](), count: P+1) // 각 플레이어 별 큐!
 
+// 1. 입력으로 들어오는 초기 지도 모습을 적절하게 변환
 for i in 0..<N {
     let row = readLine()!.map { String($0) }
     for j in 0..<M {
@@ -31,6 +32,7 @@ for i in 0..<N {
 let dx = [1, 0, -1, 0]
 let dy = [0, -1, 0, 1]
 
+// 2. number가 각 플레이어로, 각 플레이어 자신의 큐가 비어야만 종료, 그렇지 않으면 플레이어 자신의 s 만큼 반복
 func bfs(number: Int) {
     for _ in 0..<s[number] {
         if q[number].isEmpty { return }
@@ -58,7 +60,7 @@ func bfs(number: Int) {
         }
     }
 }
-
+// 맵이 꽉찰 때까지 반복
 while true {
     var count = 0
     for number in 1...P {
