@@ -1,49 +1,50 @@
-import Foundation
+import Foundation 
 
-let count = Int(readLine()!)!
+let t = Int(readLine()!)!
 
-var farmW = 0, farmH = 0
-var farm: [[Bool]] = []
+var m = 0, n = 0
+var map = [[Bool]]() // Bool 타입이 아닌 Int형으로 선언하면 메모리 초과 오류
 
-let dx: [Int] = [0, 0, -1, 1]
-let dy: [Int] = [-1, 1, 0, 0]
+let dx = [0, 0, -1, 1]
+let dy = [-1, 1, 0, 0]
 
-for _ in 0..<count {
-    //input
+for _ in 0..<t {
     let input = readLine()!.split(separator: " ").map { Int(String($0))! }
-    farmW = input[0]
-    farmH = input[1]
-    let cabbageCount = input[2]
     
-    farm = Array(repeating: Array(repeating: false, count: farmW), count: farmH)
-    for _ in 0..<cabbageCount {
-        let positions = readLine()!.split(separator: " ").map { Int(String($0))! }
-    
-        farm[positions[1]][positions[0]] = true
+    m = input[0]
+    n = input[1]
+    let k = input[2]
+
+    map = Array(repeating: Array(repeating: false, count: m), count: n)
+
+    for _ in 0..<k {
+        let pos = readLine()!.split(separator: " ").map { Int(String($0))! }
+        map[pos[1]][pos[0]] = true
     }
-    
-    var count = 0
-    for y in 0..<farmH {
-        for x in 0..<farmW {
-            if farm[y][x] {
-                dfs(y: y, x: x)
-                count += 1
+
+    var answer = 0
+    for y in 0..<n {
+        for x in 0..<m {
+            if map[y][x] {
+                dfs(y, x)
+                answer += 1
             }
         }
     }
-    
-    print(count)
+
+    print(answer)
 }
 
-func dfs(y: Int, x: Int) {
-    if farm[y][x] {
-        farm[y][x] = false
-        
+func dfs(_ y: Int, _ x: Int) {
+    if map[y][x] { 
+        map[y][x] = false
+
         for i in 0..<4 {
             let nextY = y + dy[i], nextX = x + dx[i]
-            if nextY >= 0 && nextY < farmH && nextX >= 0 && nextX < farmW {
-                if farm[y+dy[i]][x+dx[i]] {
-                    dfs(y: y+dy[i], x: x+dx[i])
+
+            if nextY >= 0 && nextY < n && nextX >= 0 && nextX < m {
+                if map[nextY][nextX] {
+                    dfs(nextY, nextX)
                 }
             }
         }
