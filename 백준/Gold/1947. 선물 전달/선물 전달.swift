@@ -1,17 +1,18 @@
-import Foundation
-
 let n = Int(readLine()!)!
-var x = 0, y = 1, z = 0
 
 if n == 1 {
-    z = x
+    print(0)
 } else if n == 2 {
-    z = y
+    print(1)
+} else if n == 3 {
+    print(2)
 } else {
-    for i in 3...n {
-        z = (i-1) * ((x + y) % 1000000000) % 1000000000
-        x = y
-        y = z
+    var dp = Array(repeating: 0, count: n+1)
+    dp[2] = 1
+    dp[3] = 2
+
+    for i in 4...n {
+        dp[i] = (i-1) * (dp[i-1] + dp[i-2]) % 1000000000
     }
+    print(dp[n])
 }
-print(z)
