@@ -1,11 +1,7 @@
 let n = Int(readLine()!)!
 
-if n == 1 {
-    print(0)
-} else if n == 2 {
-    print(1)
-} else if n == 3 {
-    print(2)
+if n < 4 {
+    print(n-1)
 } else {
     var dp = Array(repeating: 0, count: n+1)
     dp[2] = 1
