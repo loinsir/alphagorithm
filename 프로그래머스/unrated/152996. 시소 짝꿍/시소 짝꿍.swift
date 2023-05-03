@@ -1,25 +1,31 @@
 import Foundation
 
 func solution(_ weights:[Int]) -> Int64 {
-    var position: [(Int, Int)] = [(1, 1), (2, 3), (2, 4), (3, 2), (3, 4), (4, 2), (4, 3)]
-    var answer: Int = 0
-    var dict: [Int: Int] = [:]
     
-    for w in weights {
-        for p in position {
-            var n = w * p.0
-            guard n % p.1 == 0 else { continue }
-            n /= p.1
-            guard dict[n] != nil else { continue }
-            answer += dict[n]!
+    var answer: Int64 = 0
+    let distances = [2, 3, 4]
+    
+    var answers = [[Int]]()
+    
+    func combi(_ targetArr: [Int], _ targetNum: Int, _ arr: [Int], _ index: Int) {
+        if arr.count == targetNum {
+            for i in distances {
+                for j in distances {
+                    if i * arr[0] == j * arr[1] {
+                        answer += 1
+                        answers.append([arr[0], arr[1]].sorted())
+                        break
+                    }
+                }
+            }
+            return
         }
         
-        if dict[w] == nil {
-            dict[w] = 1
-        } else {
-            dict[w]! += 1
+        for i in index..<targetArr.count {
+            combi(targetArr, targetNum, arr + [targetArr[i]], i+1)
         }
     }
     
-    return Int64(answer)
+    combi(weights, 2, [], 0)
+    return Int64(Set(answers).count)
 }
