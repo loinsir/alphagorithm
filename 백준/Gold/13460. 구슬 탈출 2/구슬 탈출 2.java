@@ -49,8 +49,8 @@ public class Main {
 	
 	public static int bfs() {
 		Queue<Marble> queue = new LinkedList<>();
-		queue.add(new Marble(red.rx, red.ry, blue.bx, blue.by, 1));
-		visited[red.rx][red.ry][blue.rx][blue.ry] = true;
+		queue.add(new Marble(red.rx, red.ry, blue.bx, blue.by, 1)); // 해당 빨, 파랑 구슬 상태 저장
+		visited[red.rx][red.ry][blue.bx][blue.by] = true;
 		
 		while(!queue.isEmpty()) {
 			Marble marble = queue.poll();
