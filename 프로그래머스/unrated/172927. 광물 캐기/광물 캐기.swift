@@ -70,7 +70,7 @@ func solution(_ picks:[Int], _ minerals:[String]) -> Int {
     var picks = picks
     var canMinerals = [String]() // 실질적으로 캘 수 있는 미네랄
     
-    let heap = Heap<NodePriority>(sort: > )
+    let heap = Heap<NodePriority>(sort: >)
     
     var idx = 0
     while idx < minerals.count && idx < 5 * picks.reduce(0, +) {
