@@ -34,12 +34,7 @@ func bfs() {
             
             if 0..<n ~= ny && 0..<m ~= nx && visited[ny][nx] > cracked + map[ny][nx] {
                 visited[ny][nx] = cracked + map[ny][nx]
-                
-                if map[ny][nx] == 1 {
-                    q.append([ny, nx, cracked + 1])
-                } else {
-                    q.append([ny, nx, cracked])
-                }
+                q.append([ny, nx, cracked + map[ny][nx]])
             }
         }
         
