@@ -21,11 +21,11 @@ func dfs(_ y: Int, _ x: Int) -> Int {
         let ny = y + dy[i], nx = x + dx[i]
         
         if 0..<m ~= ny && 0..<n ~= nx && map[ny][nx] < map[y][x] {
-            if dp[ny][nx] > 0 {
+            if dp[ny][nx] > 0 { // dp > 0이면 갈 수 있다는 뜻
                 dp[y][x] += dp[ny][nx]
-            } else if dp[ny][nx] == 0 {
+            } else if dp[ny][nx] == 0 { // dp == 0 이면 아직 탐색 안했다는 뜻
                 dp[y][x] += dfs(ny, nx)
-            }
+            } // dp < 0 이면 도달할 수 없다는 뜻
         }
     }
     
