@@ -1,56 +1,34 @@
 import Foundation
-
-let s = Array(readLine()!).map { String($0) }
-let q = Int(readLine()!)!
-
-var currentAlpha = ""
-var l = 0, r = 0
-var currentSum = 0
-
-for _ in 1...q {
-    let input = readLine()!.components(separatedBy: " ")
-    let alpha = input[0]
-    let tmpL = Int(input[1])!
-    let tmpR = Int(input[2])!
-    
-    if alpha == currentAlpha {
-        while l > tmpL {
-            l -= 1
-            if s[l] == alpha {
-                currentSum += 1
-            }
-        }
-        
-        while l < tmpL {
-            if s[l] == alpha {
-                currentSum -= 1
-            }
-            l += 1
-        }
-        
-        while r > tmpR {
-            if s[r] == alpha {
-                currentSum -= 1
-            }
-            r -= 1
-        }
-        
-        while r < tmpR {
-            r += 1
-            if s[r] == alpha {
-                currentSum += 1
-            }
-        }
-    } else {
-        currentAlpha = alpha
-        currentSum = 0
-        l = tmpL
-        r = tmpR
-        for i in l...r {
-            if s[i] == alpha {
-                currentSum += 1
-            }
+var arr = Array(String(readLine()!))
+var q = Int(String(readLine()!))!
+var dict = [String: [Int]]()
+for i in Character("a").asciiValue!...Character("z").asciiValue!{
+    var preFix = Array(repeating: 0, count: arr.count)
+    if Character(String(arr[0])).asciiValue! == i {
+        preFix[0] = 1
+    }
+    for j in 1..<arr.count{
+        if Character(String(arr[j])).asciiValue! == i {
+            preFix[j] += (1 + preFix[j - 1])
+        }else{
+            preFix[j] = preFix[j - 1]
         }
     }
-    print(currentSum)
+//    print(String(UnicodeScalar(i)))
+    dict[String(UnicodeScalar(i))] = preFix
 }
+var str = ""
+for _ in 0..<q{
+    let alr = readLine()!.split(separator: " ").map{String($0)}
+    let a = alr[0]
+    let l = Int(alr[1])!
+    let r = Int(alr[2])!
+
+    let temp = dict[a]!
+    if l == 0{
+        str += "\(temp[r])\n"
+    }else{
+        str += "\(temp[r] - temp[l - 1])\n"
+    }
+}
+print(str)
