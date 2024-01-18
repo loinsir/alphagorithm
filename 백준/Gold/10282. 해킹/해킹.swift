@@ -1,54 +1,126 @@
 import Foundation
 
-let T = Int(readLine()!)!
+let t = Int(readLine()!)!
+var graph = [[(Int, Int)]]()
+var distances = [Int](repeating: Int.max, count: n + 1)
 
-for _ in 0..<T{
-    let INF = 100000000
-    let line = readLine()!.split(separator: " ").map{Int($0)!}
-    let N = line[0]
-    let D = line[1]
-    let C = line[2]-1
-    var arr = Array(repeating: [(node:Int, cost:Int)](), count: N)
-    var minCost = Array(repeating: INF, count: N)
+var n = 0
+var d = 0
+var c = 0
+
+for _ in 0..<t {
     
-    for _ in 0..<D{
-        let line = readLine()!.split(separator: " ").map{Int($0)!}
-        let A = line[0]-1
-        let B = line[1]-1
-        let S = line[2]
-        
-        arr[B].append((A,S))
+    let ndc = readLine()!.split(separator: " ").map { Int($0)! }
+    (n, d, c) = (ndc[0], ndc[1], ndc[2])
+    
+    graph = [[(Int, Int)]](repeating: [(Int, Int)](), count: n + 1)
+    
+    for _ in 0..<d {
+        let abs = readLine()!.split(separator: " ").map { Int($0)! }
+        let (a, b, s) = (abs[0], abs[1], abs[2])
+        graph[b].append((a, s))
     }
     
-    func dijk(from:Int){
-        var visited = Array(repeating: false, count: N)
-        var q = [(node:Int, cost:Int)]()
-        q.append((from,0))
-        minCost[from] = 0
+    distances = [Int](repeating: Int.max, count: n + 1)
+    dijkstra(start: c)
+    var computers = 0
+    var seconds = 0
+
+    for i in 1...n {
+        if distances[i] < Int.max {
+            computers += 1
+            seconds = max(seconds, distances[i])
+        }
+    }
+
+    print(computers, seconds)
+}
+
+final class Heap<T: Comparable> {
+    private var nodes: [T] = []
+    private let sort: (T, T) -> Bool
+    
+    init(sort: @escaping ((T, T) -> Bool)) {
+        self.sort = sort
+    }
+    
+    var isEmpty: Bool {
+        nodes.isEmpty
+    }
+    
+    func insert(_ data: T) {
+        var index = nodes.count
+        nodes.append(data)
         
-        while !q.isEmpty{
-            q.sort(by: {$0.cost > $1.cost})
-            let curr = q.removeLast()
-            visited[curr.node] = true
+        while index >= 0, sort(nodes[index], nodes[(index-1) / 2]) {
+            nodes.swapAt(index, (index - 1) / 2)
+            index = (index-1) / 2
+        }
+    }
+    
+    func delete() -> T {
+        if nodes.count == 1 {
+            return nodes.removeFirst()
+        }
+        
+        let data = nodes.first!
+        nodes.swapAt(0, nodes.count - 1)
+        nodes.removeLast()
+        
+        let limit = nodes.count
+        var index = 0
+        
+        while index < limit {
+            let leftChild = index * 2 + 1
+            let rightChild = leftChild + 1
             
-            for next in arr[curr.node]{
-                if visited[next.node]{ continue }
-                let newCost = curr.cost + next.cost
-                
-                if minCost[next.node] > newCost{
-                    minCost[next.node] = newCost
-                    q.append((next.node,newCost))
-                }
+            let children = [leftChild, rightChild]
+            .filter { $0 < limit && sort(nodes[$0], nodes[index]) }
+            .sorted { sort(nodes[$0], nodes[$1]) }
+            
+            if children.isEmpty { break }
+            nodes.swapAt(index, children.first!)
+            index = children.first!
+        }
+        
+        return data
+    }
+}
+
+struct Node: Comparable {
+    static func < (lhs: Node, rhs: Node) -> Bool {
+        return lhs.dist < rhs.dist
+    }
+    
+    let point: Int
+    let dist: Int
+    
+    init(_ point: Int, _ dist: Int) {
+        self.point = point
+        self.dist = dist
+    }
+}
+
+func dijkstra(start: Int) {
+    var pq = [Node]()
+    var visited = [Bool](repeating: false, count: n + 1)
+    pq.append(Node(start, 0))
+    distances[start] = 0
+    
+    while !pq.isEmpty {
+        pq.sort { $0.dist > $1.dist }
+        let node = pq.removeLast()
+        
+        let currentNode = node.point, currentDist = node.dist
+        visited[currentNode] = true
+        
+        for (key, value) in graph[currentNode] {
+            let nextDist = currentDist + value
+            if visited[key] { continue }
+            if nextDist < distances[key] {
+                distances[key] = nextDist
+                pq.append(Node(key, nextDist))
             }
         }
     }
-    dijk(from: C)
-    var ans:(cnt:Int, cost:Int) = (0,0)
-    for cost in minCost{
-        if cost < INF{
-            ans.cnt+=1
-            ans.cost = max(ans.cost, cost)
-        }
-    }
-    print(ans.cnt,ans.cost)
 }
